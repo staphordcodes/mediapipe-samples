@@ -44,6 +44,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.flow.StateFlow
@@ -55,7 +56,6 @@ internal fun ChatRoute(
     val context = LocalContext.current.applicationContext
     val chatViewModel: ChatViewModel = viewModel(factory = ChatViewModel.getFactory(context))
 
-    // Reset InferenceModel when entering ChatScreen
     LaunchedEffect(Unit) {
         val inferenceModel = InferenceModel.getInstance(context)
         chatViewModel.resetInferenceModel(inferenceModel)
@@ -100,7 +100,6 @@ fun ChatScreen(
             .fillMaxSize(),
         verticalArrangement = Arrangement.Bottom
     ) {
-        // Top bar with close button
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -116,7 +115,6 @@ fun ChatScreen(
                 text = if (tokens >= 0) "$tokens ${stringResource(R.string.tokens_remaining)}" else "",
                 style = MaterialTheme.typography.titleSmall
             )
-            // Wrap the buttons in another Row to keep them together
             Row {
                 IconButton(
                     onClick = {
@@ -144,7 +142,6 @@ fun ChatScreen(
         }
 
         if (tokens == 0) {
-            // Show warning label that context is full
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -181,15 +178,11 @@ fun ChatScreen(
                 .padding(vertical = 16.dp, horizontal = 4.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-
-            Column { }
-
             Spacer(modifier = Modifier.width(8.dp))
 
             TextField(
                 value = userMessage,
                 onValueChange = { userMessage = it
-                    // Only recompute on first word or when we get a new word
                     if (!userMessage.contains(" ") || userMessage.trim() != userMessage)  {
                         onChangedMessage(userMessage)
                     }
@@ -226,11 +219,21 @@ fun ChatScreen(
             ) {
                 Icon(
                     Icons.AutoMirrored.Default.Send,
-                    contentDescription = stringResource(R.string.action_send),
-                    modifier = Modifier
+                    contentDescription = stringResource(R.string.action_send)
                 )
             }
         }
+
+        // Maandishi ya kisheria na umiliki chini ya TextField
+        Text(
+            text = "Developed by staphordcodes | © 2026 Staphordcodes. Based on Google MediaPipe (Apache License 2.0)",
+            fontSize = 8.sp,
+            color = Color.Gray,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 8.dp),
+            textAlign = TextAlign.Center
+        )
     }
 }
 
