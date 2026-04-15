@@ -25,18 +25,11 @@ internal fun SelectionRoute(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // MAANDISHI YA JUU: Umiliki wako (Madogo ya kijivu)
-        Text(
-            text = "Developed by staphordcodes | © 2026 Staphordcodes. Based on Google MediaPipe (Apache License 2.0)",
-            fontSize = 7.sp,
-            color = Color.Gray,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 24.dp, bottom = 12.dp, start = 16.dp, end = 16.dp)
-        )
+        // HAPA PAMEBAKI PAWEUPE: 
+        // Saini yako sasa hivi inatokea kule juu kwenye AppBar (MainActivity.kt)
+        // Hivyo hapa hakuna haja ya kurudia tena maandishi.
 
-        // LIST YA MODELS: Inaanza hapa chini ya saini yako
+        // LIST YA MODELS
         LazyColumn(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top,
@@ -55,15 +48,13 @@ internal fun SelectionRoute(
             }
         }
 
-        // MAANDISHI YA CHINI: Tahadhari (Madogo ya kijivu)
+        // TAHADHARI YA CHINI (Mistakes warning)
         Text(
             text = "Urya AI can make mistakes. Please double check.",
             fontSize = 7.sp,
             color = Color.Gray,
             textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 12.dp)
+            modifier = Modifier.padding(bottom = 12.dp)
         )
     }
 }
