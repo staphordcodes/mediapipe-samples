@@ -108,7 +108,7 @@ fun ChatScreen(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = InferenceModel.model.toString(),
+                text = "Urya AI Engine",
                 style = MaterialTheme.typography.titleSmall
             )
             Text(
@@ -175,7 +175,7 @@ fun ChatScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 16.dp, horizontal = 4.dp),
+                .padding(top = 16.dp, start = 4.dp, end = 4.dp, bottom = 4.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Spacer(modifier = Modifier.width(8.dp))
@@ -224,16 +224,26 @@ fun ChatScreen(
             }
         }
 
-        // Maandishi ya kisheria na umiliki chini ya TextField
-        Text(
-            text = "Developed by staphordcodes | © 2026 Staphordcodes. Based on Google MediaPipe (Apache License 2.0)",
-            fontSize = 8.sp,
-            color = Color.Gray,
+        // Maandishi ya Tahadhari na Umiliki
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 8.dp),
-            textAlign = TextAlign.Center
-        )
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "Urya AI can make mistakes. Please double check.",
+                fontSize = 7.sp,
+                color = Color.Gray,
+                textAlign = TextAlign.Center
+            )
+            Text(
+                text = "Developed by staphordcodes | © 2026 Staphordcodes. Based on Google MediaPipe (Apache License 2.0)",
+                fontSize = 7.sp,
+                color = Color.Gray,
+                textAlign = TextAlign.Center
+            )
+        }
     }
 }
 
@@ -270,10 +280,11 @@ fun ChatItem(
         val author = if (chatMessage.isFromUser) {
             stringResource(R.string.user_label)
         } else if (chatMessage.isThinking) {
-            stringResource(R.string.thinking_label)
+            "Urya AI is thinking..."
         } else {
-            stringResource(R.string.model_label)
+            "Urya AI"
         }
+        
         Text(
             text = author,
             style = MaterialTheme.typography.bodySmall,
